@@ -1,0 +1,260 @@
+<html>
+<head>
+	<title>Welcome To My Chat Room</title>
+	<style>
+	
+
+		#chat{
+			height:500px;
+			width:1000px;
+		}
+		
+		#users{
+		
+			
+		}
+		#contentWrap{
+			display: none;
+		}
+		#chatWrap{
+			float: left;
+			border: 5px #000 solid;
+		}
+		
+		#users{
+		
+			
+
+		}
+	
+		
+		#nickWrap{
+			
+			 font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
+			color: #404040;
+			background: #00FFFF;
+			 height:100vh;
+			
+		}
+		
+			#contentWrap{
+			
+			 font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
+			color: #404040;
+			background: #00FFFF;
+			 height:100vh;
+	
+		}
+		#header{
+		
+
+		margin-left:600px;
+		
+		}
+		
+		#setNick{
+		
+		margin-right:500px;
+		margin-left:540px;
+		
+		}
+		
+		#button{
+		margin-right:600px;
+		margin-left:110px;
+		margin-top:10px;
+		
+				display: inline-block;
+			outline: none;
+			cursor: pointer;
+			text-align: center;
+			text-decoration: none;
+			font: 14px/100% Arial, Helvetica, sans-serif;
+			padding: .5em 2em .55em;
+			text-shadow: 0 1px 1px rgba(0,0,0,.3);
+			-webkit-border-radius: .5em; 
+			-moz-border-radius: .5em;
+			border-radius: .5em;
+			-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			box-shadow: 0 1px 2px rgba(0,0,0,.2);
+				
+		}
+		
+		#nickname{
+		
+		margin-right:600px;
+		margin-left:80px;
+		margin-top:150px;
+		box-shadow: 0 4px 6px -5px hsl(0, 0%, 40%), inset 0px 4px 6px -5px black;
+		
+		
+		}
+		
+		#message{
+		
+		margin-left:100px;
+		box-shadow: 0 4px 6px -5px hsl(0, 0%, 40%), inset 0px 4px 6px -5px black;
+		
+		
+		}
+		#nickError{
+		font: 25px/100% Arial, Helvetica, sans-serif;
+			padding: .5em 2em .55em;
+			text-align: center;
+			text-decoration: none;
+					margin-left:120px;
+					color:red;
+				
+		
+		}
+		
+		
+			#welcome{
+		font: 25px/100% Arial, Helvetica, sans-serif;
+			padding: .5em 2em .20em;
+
+			text-decoration: none;
+					margin-left:120px;
+					color:red;
+				
+		
+		}
+		#button2{
+		
+				display: inline-block;
+			outline: none;
+			cursor: pointer;
+			text-align: center;
+			text-decoration: none;
+			font: 14px/100% Arial, Helvetica, sans-serif;
+			padding: .5em 2em .55em;
+			text-shadow: 0 1px 1px rgba(0,0,0,.3);
+			-webkit-border-radius: .5em; 
+			-moz-border-radius: .5em;
+			border-radius: .5em;
+			-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			box-shadow: 0 1px 2px rgba(0,0,0,.2);
+				
+		}
+		#m{
+			color: green;
+			font-weight: bold;
+			display: block;
+			width: 150px;
+			float: left;
+	
+		
+		
+		}
+		
+			.error{
+			color: red;
+		}
+		.whisper{
+			color: gray;
+			font-style: italic;
+		}
+		
+		
+		
+	</style>
+</head>
+<body id="body">
+	<div id="nickWrap">
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+		<h1 id="header">Enter Your Name:</h1>
+		<p id="nickError"></p>
+		<form id="setNick">
+			<input size="20" id="nickname"></input><br/>
+			<br/>
+			<input id="button" type="submit"></input>
+		</form>
+	</div>
+
+	<div id="contentWrap">
+	<p id="welcome"><marquee>Welcome!</marquee></p>
+
+		<div id="chatWrap">
+			<div id="chat"></div>
+			<form id="send-message">
+
+				<textarea id = "message"rows="2" cols="100"></textarea>
+				<input id="button2" type="submit"></input>
+	
+			</form>
+		</div>
+		<h3>Users in the Chat room!</h3>
+		<div id="users"></div>
+	
+	</div>
+	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		jQuery(function($){
+			var socket = io.connect();
+			var $nickForm = $('#setNick');
+			var $nickError = $('#nickError');
+			var $nickBox = $('#nickname');
+			var $users = $('#users');
+			var $messageForm = $('#send-message');
+			var $messageBox = $('#message');
+			var $chat = $('#chat');
+			var $nameu = $('#nameu');
+			
+			
+			
+			$nickForm.submit(function(e){
+				e.preventDefault();
+				socket.emit('new user', $nickBox.val(), function(data){
+					if(data){
+						$('#nickWrap').hide();
+						$('#contentWrap').show();
+					
+					} else{
+						$nickError.html('The username is already taken! Please Enter again.');
+					}
+				});
+				$nickBox.val('');
+			});
+			
+		
+	
+			
+			
+			
+			socket.on('usernames', function(data){
+					
+				var html = '';
+				for(i=0; i < data.length; i++){
+					html += data[i] + '<br/>'
+				}
+				$users.html(html);
+			
+			});
+			
+				$messageForm.submit(function(e){
+				e.preventDefault();
+				socket.emit('send message', $messageBox.val(), function(data){
+					$chat.append('<span class="error">' + data + "</span><br/>");
+				});
+				$messageBox.val('');
+			});
+			
+			socket.on('new message', function(data){
+				$chat.append('<b>' + data.nick + ': </b>' + data.msg + "<br/>");
+					
+			});
+			
+		socket.on('whisper', function(data){
+				$chat.append('<span class="whisper"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+#chat{
+			height:500px;
+			width:1000px;
+		}
+		
+		#users{
+		
+			
+		}
+		#contentWrap{
+			display: none;
+		}
+		#chatWrap{
+			float: left;
+			border: 5px #000 solid;
+		}
+		
+		#users{
+		
+			
+
+		}
+	
+		
+		#nickWrap{
+			
+			 font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
+			color: #404040;
+			background: #00FFFF;
+			 height:100vh;
+			
+		}
+		
+			#contentWrap{
+			
+			 font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
+			color: #404040;
+			background: #00FFFF;
+			 height:100vh;
+	
+		}
+		#header{
+		
+
+		margin-left:600px;
+		
+		}
+		
+		#setNick{
+		
+		margin-right:500px;
+		margin-left:540px;
+		
+		}
+		
+		#button{
+		margin-right:600px;
+		margin-left:110px;
+		margin-top:10px;
+		
+				display: inline-block;
+			outline: none;
+			cursor: pointer;
+			text-align: center;
+			text-decoration: none;
+			font: 14px/100% Arial, Helvetica, sans-serif;
+			padding: .5em 2em .55em;
+			text-shadow: 0 1px 1px rgba(0,0,0,.3);
+			-webkit-border-radius: .5em; 
+			-moz-border-radius: .5em;
+			border-radius: .5em;
+			-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			box-shadow: 0 1px 2px rgba(0,0,0,.2);
+				
+		}
+		
+		#nickname{
+		
+		margin-right:600px;
+		margin-left:80px;
+		margin-top:150px;
+		box-shadow: 0 4px 6px -5px hsl(0, 0%, 40%), inset 0px 4px 6px -5px black;
+		
+		
+		}
+		
+		#message{
+		
+		margin-left:100px;
+		box-shadow: 0 4px 6px -5px hsl(0, 0%, 40%), inset 0px 4px 6px -5px black;
+		
+		
+		}
+		#nickError{
+		font: 25px/100% Arial, Helvetica, sans-serif;
+			padding: .5em 2em .55em;
+			text-align: center;
+			text-decoration: none;
+					margin-left:120px;
+					color:red;
+				
+		
+		}
+		
+		
+			#welcome{
+		font: 25px/100% Arial, Helvetica, sans-serif;
+			padding: .5em 2em .20em;
+
+			text-decoration: none;
+					margin-left:120px;
+					color:red;
+				
+		
+		}
+		#button2{
+		
+				display: inline-block;
+			outline: none;
+			cursor: pointer;
+			text-align: center;
+			text-decoration: none;
+			font: 14px/100% Arial, Helvetica, sans-serif;
+			padding: .5em 2em .55em;
+			text-shadow: 0 1px 1px rgba(0,0,0,.3);
+			-webkit-border-radius: .5em; 
+			-moz-border-radius: .5em;
+			border-radius: .5em;
+			-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+			box-shadow: 0 1px 2px rgba(0,0,0,.2);
+				
+		}
+		#m{
+			color: green;
+			font-weight: bold;
+			display: block;
+			width: 150px;
+			float: left;
+	
+		
+		
+		}
